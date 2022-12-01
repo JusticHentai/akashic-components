@@ -1,0 +1,7 @@
+.button {
+  @include block-rh;
+
+  width: 150px;
+  font-size: 24px;
+  background: #333;
+}

@@ -1,14 +1,17 @@
 {
-  "name": "akashic-components",
+  "name": "@justichentai/akashic-components",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "阿卡西组件库",
+  "keywords": [
+    "justichentai",
+    "components"
+  ],
+  "license": "ISC",
+  "author": "justichentai",
+  "main": "src/index.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
   "dependencies": {
     "@justichentai/scss-utils": "^1.0.1",
     "react": "^18.2.0",

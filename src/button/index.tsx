@@ -1,5 +1,7 @@
+import style from './style/index.module.scss'
+
 const Button = () => {
-  return <div>Button</div>
+  return <div className={style.button}>Button</div>
 }
 
 export default Button
