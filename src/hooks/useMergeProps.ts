@@ -1,31 +1,23 @@
 import { useMemo } from 'react'
-import omit from '../utils/omit'
+import BaseProps from '../types/BaseProps'
 
-export type MergePropsOptions = {
-  ignorePropsFromGlobal?: boolean
-}
-
-export default function useMergeProps<PropsType>(
-  componentProps: PropsType & MergePropsOptions,
+export default function useMergeProps<PropsType extends BaseProps>(
+  componentProps: PropsType,
   defaultProps: Partial<PropsType>,
-  globalComponentConfig: Partial<PropsType>
+  globalComponentProps: Partial<PropsType>
 ): PropsType {
-  const { ignorePropsFromGlobal } = componentProps
-
-  const _defaultProps = useMemo(() => {
-    return {
-      ...defaultProps,
-      ...(ignorePropsFromGlobal ? {} : globalComponentConfig),
-    }
-  }, [defaultProps, globalComponentConfig, ignorePropsFromGlobal])
+  const { ignoreGlobalComponentProps } = componentProps
 
   return useMemo(() => {
-    // 移除 ignorePropsFromGlobal
-    const mProps = omit(componentProps, ['ignorePropsFromGlobal']) as PropsType
-
     return {
-      ..._defaultProps,
-      ...mProps,
+      ...defaultProps,
+      ...(ignoreGlobalComponentProps ? {} : globalComponentProps),
+      ...componentProps,
     }
-  }, [componentProps, _defaultProps])
+  }, [
+    componentProps,
+    defaultProps,
+    globalComponentProps,
+    ignoreGlobalComponentProps,
+  ])
 }
